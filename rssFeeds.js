@@ -1,6 +1,7 @@
 async function getRandomArticle(feedUrl) {
     debugger;
-    const response = await fetch(feedUrl);
+
+    const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(feedUrl)}`);
     const text = await response.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(text, 'text/xml');
