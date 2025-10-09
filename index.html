@@ -3,123 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Random Redirect</title>
+  <script src="stories.js"></script>
+  <script src="rssFeeds"></script>
   <script>
     window.onload = async function() {
-      const urls = [
-        "https://www.sleep-stories.com/a-meeting-with-michelangelo/",
-        "https://www.sleep-stories.com/an-underwater-sleep-story-adventure-text-script-for-reading-out/",
-        "https://www.sleep-stories.com/the-cabin-by-the-lake-soothing-nature-bedtime-story-script/",
-        "https://www.sleep-stories.com/a-rainy-night-in-the-museum-bedtime-story-script-for-grown-ups/",
-        "https://www.sleep-stories.com/the-beekeeper-the-artisan-the-shepherd-transylvanian-bedtime-story-text/",
-        "https://www.sleep-stories.com/the-cabin-in-the-woods-nature-sleep-story-script/",
-        "https://www.sleep-stories.com/the-mystic-castle-the-ancient-library-magic-sleep-story-text/",
-        "https://www.sleep-stories.com/a-snowy-night-in-paris-bedtime-story-text/",
-        "https://www.sleep-stories.com/the-orient-express-train-ride-sleep-story/",
-        "https://www.sleep-stories.com/lighthouse-written-sleep-story-text/",
-        "https://cantsleepreads.com/story/the-pit-and-the-pendulum",
-        "https://cantsleepreads.com/story/the-fall-of-the-house-of-usher",
-        "https://cantsleepreads.com/story/the-tell-tale-heart",
-        "https://cantsleepreads.com/story/the-masque-of-the-red-death",
-        "https://cantsleepreads.com/story/the-celebrated-jumping-frog",
-        "https://cantsleepreads.com/story/the-yellow-wallpaper",
-        "https://cantsleepreads.com/story/occurrence-at-owl-creek-bridge",
-        "https://cantsleepreads.com/story/the-gift-of-the-magi",
-        "https://cantsleepreads.com/story/the-monkeys-paw",
-        "https://cantsleepreads.com/story/the-million-pound-bank-note",
-        "https://cantsleepreads.com/story/the-most-dangerous-game",
-        "https://cantsleepreads.com/story/the-gold-bug",
-        "https://cantsleepreads.com/story/rip-van-winkle",
-        "https://cantsleepreads.com/story/the-legend-of-sleepy-hollow",
-        "https://cantsleepreads.com/story/bartleby-the-scrivener",
-        "https://cantsleepreads.com/story/the-ransom-of-red-chief",
-        "https://cantsleepreads.com/story/the-dancing-plague",
-        "https://cantsleepreads.com/story/the-emu-war",
-        "https://cantsleepreads.com/story/the-great-molasses-flood",
-        "https://cantsleepreads.com/story/claude-monet",
-        "https://cantsleepreads.com/story/vincent-van-gogh",
-        "https://blog.reedsy.com/short-story/t6dsuf/",
-        "https://blog.reedsy.com/short-story/0k08as/",
-        "https://blog.reedsy.com/short-story/qr7s96/",
-        "https://blog.reedsy.com/short-story/3ymv5v/",
-        "https://blog.reedsy.com/short-story/fup3iv/",
-        "https://blog.reedsy.com/short-story/12yaiw/",
-        "https://blog.reedsy.com/short-story/n60xpj/",
-        "https://blog.reedsy.com/short-story/ysdszz/",
-        "https://blog.reedsy.com/short-story/g47tlm/",
-        "https://blog.reedsy.com/short-story/r19xp5/",
-        "https://blog.reedsy.com/short-story/z4kb1a/",
-        "https://blog.reedsy.com/short-story/nnixya/",
-        "https://blog.reedsy.com/short-story/b17yta/",
-        "https://blog.reedsy.com/short-story/eusjqs/",
-        "https://blog.reedsy.com/short-story/pzw7o9/",
-        "https://blog.reedsy.com/short-story/nzlmsy/",
-        "https://blog.reedsy.com/short-story/ija7ei/",
-        "https://blog.reedsy.com/short-story/rp5vp4/",
-        "https://blog.reedsy.com/short-story/ogv6sx/",
-        "https://blog.reedsy.com/short-story/cxcbhi/",
-        "https://nightlywhispers.com/story/sitting-next-to-scary-yakuza/",
-        "https://nightlywhispers.com/story/the-egyption-quest-for-immortality/",
-        "https://nightlywhispers.com/story/dragon-rider-quest/",
-        "https://nightlywhispers.com/story/silent-witness/",
-        "https://nightlywhispers.com/story/nocturnal-riddles/",
-        "https://nightlywhispers.com/story/the-haunting-of-blackwoodmanor/",
-        "https://nightlywhispers.com/story/the-midnight-heist-society/",
-        "https://nightlywhispers.com/story/the-enigma-of-whispering-pines/",
-        "https://nightlywhispers.com/story/pride-and-moonlight/",
-        "https://nightlywhispers.com/story/dracula-nightcap/",
-        "https://nightlywhispers.com/story/wonderland-dreams/",
-        "https://nightlywhispers.com/story/midnight-butcher/",
-        "https://nightlywhispers.com/story/whispers-in-the-shadows/",
-        "https://lemonsandletters.com/leo-the-cat-and-the-little-robot/",
-        "https://lemonsandletters.com/bella-the-beaver-and-the-river/",
-        "https://lemonsandletters.com/the-knight-and-the-last-dragon/",
-        "https://lemonsandletters.com/tortella-and-the-hidden-treasure/",
-        "https://lemonsandletters.com/story-tired-moon/",
-        "https://lemonsandletters.com/mermaid-esmelda/",
-        "https://lemonsandletters.com/richard-the-meerkat-and-the-blue-sapphire/",
-        "https://lemonsandletters.com/rosie-the-flying-piglet/",
-        "https://lemonsandletters.com/the-raven-and-the-fox/",
-        "https://lemonsandletters.com/the-shepherd-and-the-wolf/",
-        "https://lemonsandletters.com/the-sun-and-the-wind/",
-        "https://lemonsandletters.com/the-dog-and-his-bone/",
-        "https://lemonsandletters.com/the-fox-and-the-stork/",
-        "https://lemonsandletters.com/the-lion-and-the-mouse/",
-        "https://lemonsandletters.com/the-wolf-in-sheeps-clothing/",
-        "https://lemonsandletters.com/the-city-mouse-and-the-country-mouse/",
-        "https://lemonsandletters.com/the-tortoise-and-the-hare/",
-        "https://lemonsandletters.com/the-fox-and-the-grapes/",
-        "https://lemonsandletters.com/the-goose-that-laid-the-golden-eggs/",
-        "https://lemonsandletters.com/the-peacock-and-the-crane/",
-        "https://lemonsandletters.com/the-tortoise-and-the-eagle/",
-      ];
-
       const sources = ["urls", "bbc"];
       const randomSource = sources[Math.floor(Math.random() * sources.length)];
 
       if (randomSource === "urls") {
-        const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+        const randomUrl = pickRandomStory();
         window.location.href = randomUrl;
       } else if (randomSource === "bbc") {
         try {
-          const response = await fetch('https://feeds.bbci.co.uk/news/rss.xml');
-          const text = await response.text();
-          const parser = new DOMParser();
-          const xmlDoc = parser.parseFromString(text, 'text/xml');
-          const items = xmlDoc.querySelectorAll('item');
-          
-          if (items.length > 0) {
-            const randomIndex = Math.floor(Math.random() * items.length);
-            const linkElement = items[randomIndex].querySelector('link');
-            if (linkElement) {
-              window.location.href = linkElement.textContent;
-            } else {
-              const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-              window.location.href = randomUrl;
-            }
-          } else {
-            const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-            window.location.href = randomUrl;
-          }
+          const articleUrl = await getRandomArticle('https://feeds.bbci.co.uk/news/rss.xml');
         } catch (error) {
           console.error('Error fetching BBC news:', error);
           const randomUrl = urls[Math.floor(Math.random() * urls.length)];
