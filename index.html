@@ -1,34 +1,46 @@
+<!--npx serve . to run-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Random Redirect</title>
+  <title>Random Story</title>
   <script src="stories.js"></script>
   <script src="rssFeeds.js"></script>
   <script>
     window.onload = async function() {
-      const sources = ["urls", "bbc"];
-      const randomSource = sources[Math.floor(Math.random() * sources.length)];
-      console.log(randomSource);
-
-      if (randomSource === "urls") {
-        const randomUrl = pickRandomStory();
-        console.log("story: " + randomUrl);
-        //window.location.href = randomUrl;
-      } else if (randomSource === "bbc") {
-        try {
-          const articleUrl = await getRandomArticle('https://feeds.bbci.co.uk/news/rss.xml');
-          console.log("article: " + articleUrl);
-        } catch (error) {
-          console.error('Error fetching BBC news:', error);
-          const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-          //window.location.href = randomUrl;
-        }
-      }
+      window.location.href = await getRandomStoryUrl();
     };
+
+    async function pickRandomStoryForIFrame() {
+      const url = getRandomStoryUrl();
+      //TODO: redirect to this url in iframe
+    }
+
+    async function getRandomStoryUrl() {
+      const source = getRandomSource();
+      return await getRandomUrl(source);
+    }
+
+    function getRandomSource() {
+      const sources = ["urls", "bbc"];
+      return sources[Math.floor(Math.random() * sources.length)];
+    }
+
+    async function getRandomUrl(source) {
+      if (source === "urls")
+        return pickRandomStory();
+
+      if (source === "bbc")
+        return await getRandomArticle('https://feeds.bbci.co.uk/news/rss.xml');
+
+      return "";
+    }
   </script>
 </head>
 <body>
-  <p>Redirecting...</p>
+  <!--TODO: 
+    add a button titled next, that sits in the top left of the screen and when clicked calls pickRandomStoryForIFrame()
+    add iframe that takes up full width of screen and full height, other than slither at top where the next button is. url of iframe should be set by the pickRandomStoryForIFrame method.
+  -->
 </body>
 </html>
