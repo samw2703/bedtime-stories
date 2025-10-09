@@ -8,12 +8,18 @@
   <script src="rssFeeds.js"></script>
   <script>
     window.onload = async function() {
-      window.location.href = await getRandomStoryUrl();
+      const iframe = document.getElementById('storyFrame');
+      if (iframe) {
+        iframe.src = await getRandomStoryUrl();
+      }
     };
 
     async function pickRandomStoryForIFrame() {
-      const url = getRandomStoryUrl();
-      //TODO: redirect to this url in iframe
+      const url = await getRandomStoryUrl();
+      const iframe = document.getElementById('storyFrame');
+      if (iframe) {
+        iframe.src = url;
+      }
     }
 
     async function getRandomStoryUrl() {
@@ -38,9 +44,39 @@
   </script>
 </head>
 <body>
-  <!--TODO: 
-    add a button titled next, that sits in the top left of the screen and when clicked calls pickRandomStoryForIFrame()
-    add iframe that takes up full width of screen and full height, other than slither at top where the next button is. url of iframe should be set by the pickRandomStoryForIFrame method.
-  -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    #nextButton {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 1000;
+    }
+    #nextButton:hover {
+      background-color: #45a049;
+    }
+    #storyFrame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+  <button id="nextButton" onclick="pickRandomStoryForIFrame()">Next</button>
+  <iframe id="storyFrame"></iframe>
 </body>
 </html>
