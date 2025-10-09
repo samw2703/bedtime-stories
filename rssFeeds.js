@@ -2,7 +2,7 @@ async function getRandomArticle(feedUrl) {
     debugger;
 
     const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(feedUrl)}`);
-    const text = await response.text();
+    const text = await response.body.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(text, 'application/xml');
     const items = xmlDoc.querySelectorAll('item');
