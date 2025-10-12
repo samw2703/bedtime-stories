@@ -7,13 +7,8 @@
   <script src="stories.js"></script>
   <script src="rssFeeds.js"></script>
   <script>
-    window.onload = async function() {
+    async function goToRandomThing() {
       window.location.href = await getRandomStoryUrl();
-    };
-
-    async function pickRandomStoryForIFrame() {
-      const url = getRandomStoryUrl();
-      //TODO: redirect to this url in iframe
     }
 
     async function getRandomStoryUrl() {
@@ -38,9 +33,36 @@
   </script>
 </head>
 <body>
-  <!--TODO: 
-    add a button titled next, that sits in the top left of the screen and when clicked calls pickRandomStoryForIFrame()
-    add iframe that takes up full width of screen and full height, other than slither at top where the next button is. url of iframe should be set by the pickRandomStoryForIFrame method.
-  -->
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <button 
+      onclick="goToRandomThing()" 
+      style="
+        background-color: #28a745;
+        color: white;
+        font-size: 2rem;
+        padding: 1.5rem 3rem;
+        border: none;
+        border-radius: 2rem;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: background 0.2s;
+        width: 90vw;
+        max-width: 400px;
+      ">
+      Reading Time!
+    </button>
+  </div>
+  <style>
+    @media (max-width: 600px) {
+      button {
+        font-size: 1.2rem !important;
+        padding: 1rem 1.5rem !important;
+        border-radius: 1rem !important;
+      }
+      div {
+        height: 80vh !important;
+      }
+    }
+  </style>
 </body>
 </html>
