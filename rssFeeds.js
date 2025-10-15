@@ -1,6 +1,4 @@
 async function getRandomArticle(feedUrl) {
-    debugger;
-
     const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(feedUrl)}`);
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

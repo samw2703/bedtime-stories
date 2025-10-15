@@ -17,18 +17,33 @@
     }
 
     function getRandomSource() {
-      const sources = ["urls", "bbc"];
+      const sources = ["urls", "feed", "feed"];
       return sources[Math.floor(Math.random() * sources.length)];
-    }
+    } 
 
     async function getRandomUrl(source) {
       if (source === "urls")
         return pickRandomStory();
 
-      if (source === "bbc")
-        return await getRandomArticle('https://feeds.bbci.co.uk/news/rss.xml');
+      if (source === "feed")
+        return await getRandomArticleFromRandomFeed();
 
       return "";
+    }
+
+    async function getRandomArticleFromRandomFeed() {
+      const feeds = ['https://feeds.bbci.co.uk/news/rss.xml',
+        'https://www.thisiscolossal.com/feed/',
+        'https://longreads.com/rss',
+        'http://feeds.guardian.co.uk/theguardian/culture/rss',
+        'https://www.themarginalian.org/feed/',
+        'https://feeds.feedburner.com/oatmealfeed',
+        'https://xkcd.com/rss.xml',
+        'https://feeds.guardian.co.uk/theguardian/world/rss',
+      ];
+      const randomFeed = feeds[Math.floor(Math.random() * feeds.length)];
+
+      return await getRandomArticle(randomFeed);
     }
   </script>
 </head>
