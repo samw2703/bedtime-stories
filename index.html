@@ -7,6 +7,17 @@
   <script src="stories.js"></script>
   <script src="rssFeeds.js"></script>
   <script>
+    function setMessage(message) {
+      const messageBox = document.getElementById('messageBox');
+      if (messageBox) {
+        messageBox.textContent = message;
+      }
+    }
+
+    function clearMessage() {
+      setMessage('');
+    }
+
     async function goToRandomThing() {
       window.location.href = await getRandomStoryUrl();
     }
@@ -43,12 +54,28 @@
       ];
       const randomFeed = feeds[Math.floor(Math.random() * feeds.length)];
 
-      return await getRandomArticle(randomFeed);
+      setMessage(`Fetching article from: ${randomFeed}`);
+
+      try {
+        return await getRandomArticle(randomFeed);
+      } catch (error) {
+        setMessage(`Failed to fetch from RSS feed: ${randomFeed}`);
+        throw error;
+      }
     }
   </script>
 </head>
 <body>
-  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <div id="messageBox" style="
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 1rem;
+    text-align: center;
+    min-height: 2rem;
+    font-size: 1rem;
+    border-bottom: 1px solid #ddd;
+  "></div>
+  <div style="display: flex; justify-content: center; align-items: center; height: calc(100vh - 4rem);">
     <button 
       onclick="goToRandomThing()" 
       style="
