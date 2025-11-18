@@ -28,7 +28,7 @@
     }
 
     function getRandomSource() {
-      const sources = ["urls", "feed", "feed"];
+      const sources = ["urls", "feed", "feed", "wikipedia"];
       return sources[Math.floor(Math.random() * sources.length)];
     } 
 
@@ -39,6 +39,9 @@
       if (source === "feed")
         return await getRandomArticleFromRandomFeed();
 
+      if (source === "wikipedia")
+        return "https://wikiroulette.co/";
+
       return "";
     }
 
@@ -46,10 +49,7 @@
       const feeds = ['https://feeds.bbci.co.uk/news/rss.xml',
         'https://www.thisiscolossal.com/feed/',
         'https://longreads.com/rss',
-        'http://feeds.guardian.co.uk/theguardian/culture/rss',
-        'https://www.themarginalian.org/feed/',
         'https://feeds.feedburner.com/oatmealfeed',
-        'https://xkcd.com/rss.xml',
         'https://feeds.guardian.co.uk/theguardian/world/rss',
       ];
       const randomFeed = feeds[Math.floor(Math.random() * feeds.length)];
